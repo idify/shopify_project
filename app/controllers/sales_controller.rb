@@ -1,9 +1,7 @@
 class SalesController < ApplicationController
   around_filter :shopify_session, :except => 'welcome'
   before_filter :check_fraud_filter,:only=>[:create,:update]
-  def new
-   render :text => ShopifyApp.configuration.api_key
-   return
+  def new  
    @product = ShopifyAPI::Product.find(params[:id])
    @sale = Sale.new
    #render :json => @products.price_range

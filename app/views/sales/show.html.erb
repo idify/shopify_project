@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Transaction Id:</b>
+  <%= @sale.transaction_id %>
+</p>
+
+<p>
+  <b>Order date:</b>
+  <%= @sale.order_date.strftime("%d-%m-%Y") %>
+</p>
+
+<p>
+  <b>Total amount:</b>
+  <%= @sale.total_amount %>
+</p>
+
+
+<p>
+  <b>Name:</b>
+  <%= @sale.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @sale.email %>
+</p>
+
+<p>
+  <b>Addresss:</b>
+  <%= @sale.address %>
+</p>
+<p>
+  <b>City:</b>
+  <%= @sale.city %>
+</p>
+<p>
+  <b>State:</b>
+  <%= @sale.state %>
+</p>
+<p>
+  <b>Country:</b>
+  <%= @sale.country %>
+</p>

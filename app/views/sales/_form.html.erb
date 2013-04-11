@@ -1,0 +1,83 @@
+<%= form_for @sale, :html => { :class => 'form-horizontal' } do |f| %>
+<div class="top-space">
+  <% if flash[:notice] %>
+    <p class="flash-notice"><%= flash[:notice] %></p>
+  <% end %>
+  <% if @sale.errors.any? %>  
+  <div id="errorExplanation">  
+    <h4><%= pluralize(@sale.errors.count, "error") %> prohibited this user from being saved:</h4>  
+    <ul>  
+    <% @sale.errors.full_messages.each do |msg| %>  
+      <li><%= msg %></li>  
+    <% end %>  
+    </ul>  
+  </div>  
+  <% end %>  
+</div>
+       <%=render :partial=>"step1",:locals=>{:f=>f}%>
+	<h1>Payment</h1>
+    
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :email , :class => 'control-label'%>
+    <div class="controls">
+    	<%= f.text_field :email , :class => 'text_field'%>
+		</div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :address , :class => 'control-label'%>
+    <div class="controls">
+    	<%= f.text_field :address , :class => 'text_field'%>
+		</div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :city  ,:class => 'control-label'%>
+    <div class="controls">
+    	<%= f.text_field :city  ,:class => 'text_field'%>
+		</div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :state,:class => 'control-label'%>
+    <div class="controls">
+    	<%= f.text_field :state ,:class => 'text_field'%>
+		</div>
+  </div>
+
+  <div class="field">
+    <%= f.label :country ,:class => 'control-label'%>
+    <div class="controls">
+	    <%= f.country_select :country%>
+		</div>
+  </div><br/>
+
+  <div class="field">
+    <%= f.label :gateway ,:class => 'control-label'%>
+    <div class="controls">
+	    <%= f.select :gateway ,[['Paypal','Paypal'],['Authorize dot net','Authorize dot net']]%>
+		</div>
+  </div><br/>
+
+  <div class="field">
+    <%= f.label :total_amount ,:class => 'control-label'%>
+    <div class="controls">
+    	<%= f.text_field :total_amount ,:readonly=>true,:id=>"total_amount",:value=>@product.price_range * 1 ,:class => 'text_field'%>
+		</div>
+  </div><%= f.hidden_field :transaction_id,:value=>"paypal1" %>
+        <%= f.hidden_field :product_id,:value=>@product.id %>
+  <div class="form-actions">
+    <%= f.submit "Pay", :class => 'btn btn-primary' %>
+  </div>
+
+    
+
+
+<% end %>

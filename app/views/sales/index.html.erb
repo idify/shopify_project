@@ -1,0 +1,46 @@
+<div class="page-header">
+<h1>Sales</h1>
+</div>
+
+
+<table class="table table-striped">
+	<thead>
+  <tr>
+    <th>Transaction</th>
+    <th>Order date</th>
+    <th>Total amount</th>
+    <th>Gateway</th>
+    <th> Status</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Country</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+	</thead>
+<tbody>
+<% @sales.each do |sale| %>
+  <tr>
+    <td><%= sale.transaction_id %></td>
+    <td><%= sale.order_date.strftime("%m/%d/%Y") %></td>
+    <td><%= sale.total_amount %></td>
+    <td><%= sale.gateway %></td>
+    <td><%= sale.order_status.gsub('_', " ") %></td>
+    <td><%= sale.name %></td>
+    <td><%= sale.email %></td>
+    <td><%= sale.address %></td>
+    <td><%= sale.city %></td>
+    <td><%= sale.state %></td>
+    <td><%= sale.country %></td>
+    <td><%= link_to 'Show', sale,:class => 'btn btn-primary' %></td>
+    <td><%= link_to 'Edit', edit_sale_path(sale),:class => 'btn btn-primary' %></td>
+    <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' },:class => 'btn btn-primary' %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
